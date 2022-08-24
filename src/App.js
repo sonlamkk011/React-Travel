@@ -1,24 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import Public from './Module/Public/Public';
+import { Routes, Route } from 'react-router-dom'
+import Contact from './Module/Public/Contact/Contact';
+import Explore from './Module/Public/Explore/Explore';
+import Listings from './Module/Public/Listings/Listings';
+import SingleListing from './Module/Public/SingleListing/SingleListing';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={<Public />} />
+        <Route path='/contact' element={<Contact />} /> 
+        <Route path='/explore' element={ <Explore /> } />
+        <Route path='/listing' element={ <Listings /> } />
+        <Route path='/single-listing' element={ <SingleListing /> } />
+      </Routes>
+    </>
   );
 }
 
