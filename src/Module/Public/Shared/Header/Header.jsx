@@ -90,7 +90,7 @@ const Header = () => {
                                                 </Link>
                                             </div>
                                         </li>
-                                        <li className="nav-item dropdown">
+                                        {/* <li className="nav-item dropdown">
                                             <a
                                                 className="nav-link dropdown-toggle"
                                                 href="#"
@@ -122,7 +122,7 @@ const Header = () => {
                                                     Contact
                                                 </a>
                                             </div>
-                                        </li>
+                                        </li> */}
                                         <li className="nav-item">
                                             <Link to="/contact" className="nav-link" >
                                                 Contact
