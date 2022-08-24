@@ -12,10 +12,10 @@ import Layout from "./Components/Layout/Layout"
 const Home = () => {
     return (
         <>
-            <div id="preloader">
+            {/* <div id="preloader">
                 <div className="dorne-load" />
             </div>
-          
+           */}
             <Header />
             <Layout />
             <Category />
