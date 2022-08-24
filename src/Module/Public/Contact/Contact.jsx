@@ -20,33 +20,30 @@ const Contact = () => {
                         <div className="contact-text">
                             <h4>Hello, Get in touch with us</h4>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac nibh
-                                sed mi ullamcorper rhoncus. Curabitur pulvinar vel augue sit amet
-                                vestibulum. Proin tempus lacus porta lorem blandit aliquam eget quis
-                                ipsum. Vivamus accumsan consequat ligula non volutpat. Sed mollis orci
-                                non cursus vestibulum. Pellentesque vitae est a augue laoreet
-                                venenatis sed eu felis. Sed cursus magna nec turpis ullamcorper, eget
-                                rutrum felis egestas. Nunc odio ex, fermentum efficitur nunc vitae,
-                                efficitur hendrerit diam. Lorem ipsum dolor sit amet, consectetur.
+                                The customer is very important, the customer will be followed by the customer.
+                                For as nibh sed mi ullamcorper rhoncus. I'm talking about a pillow or an advertisement.
+                                At the same time, the portal of the lake flatters someone who needs it.
+                                We live in a relationship with the law, not life.
+                                But the soft clinical course is not the course. The life of the people is a curse,
+                                but eu felis. But the course is great, and the body is not ugly. Now the hatred is ex,
+                                the ferment is now made of life, the bureau is made diam. Lorem ipsum dolor sit amet, consectetur.
                             </p>
                             <div className="contact-info d-lg-flex">
                                 <div className="single-contact-info">
                                     <h6>
-                                        <i className="fa fa-map-signs" aria-hidden="true" /> Main Avenue
-                                        Soho, NY
+                                        <i className="fa fa-map-signs" aria-hidden="true" /> Lam Son Dep Trai
                                     </h6>
                                     <h6>
-                                        <i className="fa fa-map-signs" aria-hidden="true" /> No. 25-33
+                                        <i className="fa fa-map-signs" aria-hidden="true" /> 12-12-2001
                                     </h6>
                                 </div>
                                 <div className="single-contact-info">
                                     <h6>
                                         <i className="fa fa-envelope-o" aria-hidden="true" />{" "}
-                                        contact@yourbusiness.com
+                                        sonlamkk011@gmail.com
                                     </h6>
                                     <h6>
-                                        <i className="fa fa-phone" aria-hidden="true" /> +34 567 22478
-                                        49567
+                                        <i className="fa fa-phone" aria-hidden="true" /> +84 978796738
                                     </h6>
                                 </div>
                             </div>
