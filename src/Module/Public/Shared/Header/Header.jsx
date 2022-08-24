@@ -1,13 +1,26 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+
+
 
 
 const Header = () => {
-    const [search, setSearch] = useState(false);
+    const [open, setOpen] = useState(false);
 
-    const handleSearch = () => {
-        setSearch(true);
-    }
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
 
     return (
         <>
@@ -38,9 +51,9 @@ const Header = () => {
                     <div className="row h-100">
                         <div className="col-12 h-100">
                             <nav className="h-100 navbar navbar-expand-lg">
-                                <Link to="/" className="navbar-brand" >
+                                <a className="navbar-brand" href="/" >
                                     <img src="Assets/img/core-img/logo.png" alt="" />
-                                </Link>
+                                </a>
                                 <button
                                     className="navbar-toggler"
                                     type="button"
@@ -135,6 +148,7 @@ const Header = () => {
                                             <i className="fa fa-search" aria-hidden="true"></i> Search
                                         </a>
                                     </div>
+                                   
                                     {/* Signin btn */}
                                     <div className="dorne-signin-btn">
                                         <a href="#">Sign in or Register</a>
