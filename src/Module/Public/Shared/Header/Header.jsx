@@ -151,7 +151,7 @@ const Header = () => {
                                    
                                     {/* Signin btn */}
                                     <div className="dorne-signin-btn">
-                                        <a href="#">Sign in or Register</a>
+                                        <Link to="/login">Sign in or Register</Link>
                                     </div>
                                     {/* Add listings btn */}
                                     <div className="dorne-add-listings-btn">
