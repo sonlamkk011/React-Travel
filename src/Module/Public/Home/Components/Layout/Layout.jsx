@@ -1,3 +1,4 @@
+import { Button } from "@mui/material"
 
 
 const Layout = () => {
@@ -105,9 +106,9 @@ const Layout = () => {
                                                 <option value={2}>$500 - $999</option>
                                                 <option value={3}>$1000 - $4999</option>
                                             </select>
-                                            <button type="submit" className="btn dorne-btn">
+                                            <a href="#" className="btn dorne-btn">
                                                 <i className="fa fa-search pr-2" aria-hidden="true" /> Search
-                                            </button>
+                                            </a>
                                         </form>
                                     </div>
                                 </div>
@@ -118,24 +119,24 @@ const Layout = () => {
                 {/* Hero Social Btn */}
                 <div className="hero-social-btn">
                     <div className="social-title d-flex align-items-center">
-                        <h6>Follow us on Social Media</h6>
+                        <h6>Follow us on Lam Son dz</h6>
                         <span />
                     </div>
                     <div className="social-btns">
-                        <a href="#">
+                        <a href="https://www.facebook.com/sonlamkk/">
+                            <i className="fa fa-facebook" aria-haspopup="true" />
+                        </a>
+                        <a href="https://www.facebook.com/sonlamkk/">
                             <i className="fa fa-linkedin" aria-haspopup="true" />
                         </a>
-                        <a href="#">
+                        <a href="https://www.facebook.com/sonlamkk/">
                             <i className="fa fa-behance" aria-hidden="true" />
                         </a>
-                        <a href="#">
+                        <a href="https://www.facebook.com/sonlamkk/">
                             <i className="fa fa-dribbble" aria-hidden="true" />
                         </a>
-                        <a href="#">
+                        <a href="https://www.facebook.com/sonlamkk/">
                             <i className="fa fa-twitter" aria-haspopup="true" />
-                        </a>
-                        <a href="#">
-                            <i className="fa fa-facebook" aria-haspopup="true" />
                         </a>
                     </div>
                 </div>
