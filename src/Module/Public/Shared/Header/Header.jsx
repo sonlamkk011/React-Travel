@@ -42,8 +42,6 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-
-
             <header className="header_area" id="header">
                 <div className="container-fluid h-100">
                     <div className="row h-100">
@@ -154,8 +152,8 @@ const Header = () => {
                                     {/* Add listings btn */}
                                     <div className="dorne-add-listings-btn">
 
-                                        <Button style={{backgroundColor:"#7643ea", color:"#fff", height:"50px"}} onClick={showDrawer} icon={<PlusOutlined />}>
-                                             Add Listings
+                                        <Button style={{ backgroundColor: "#7643ea", color: "#fff", height: "50px" }} onClick={showDrawer} icon={<PlusOutlined />}>
+                                            Add Listings
                                         </Button>
                                         <Drawer
                                             title="Create a new account"
@@ -168,7 +166,7 @@ const Header = () => {
                                             extra={
                                                 <Space>
                                                     <Button onClick={onClose}>Cancel</Button>
-                                                    <Button onClick={onClose} style={{backgroundColor:"#7643ea", color:"#fff"}}>
+                                                    <Button onClick={onClose} style={{ backgroundColor: "#7643ea", color: "#fff" }}>
                                                         Submit
                                                     </Button>
                                                 </Space>
