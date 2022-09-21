@@ -50,6 +50,18 @@ const Header = () => {
         </div>
       </div>
       <header className="header_area" id="header">
+        <div className="search-btn w-100 d-flex align-items-center">
+        <div className="input-group container flex-nowrap">
+          <input
+            type="text"
+            className="form-control input-size rounded-0"
+            placeholder="Search Your Desire Destinations Or Events"
+            aria-label="Username"
+            aria-describedby="addon-wrapping"
+          />
+        </div>
+        </div>
+
         <div className="container-fluid h-100">
           <div className="row h-100">
             <div className="col-12 h-100">
@@ -167,7 +179,7 @@ const Header = () => {
                         backgroundColor: "#7643ea",
                         color: "#fff",
                         height: "40px",
-                        borderRadius:"999px"
+                        borderRadius: "999px",
                       }}
                       onClick={showDrawer}
                       icon={<PlusOutlined />}
@@ -181,21 +193,22 @@ const Header = () => {
                       visible={visible}
                       bodyStyle={{
                         paddingBottom: 80,
-                        backgroundColor:"#7643ea",
+                        backgroundColor: "#7643ea",
                       }}
                       extra={
                         <Space>
-                          <Button 
-                          onClick={onClose}
-                          style={{borderRadius:"50px"}}
-                          
-                          >Cancel</Button>
+                          <Button
+                            onClick={onClose}
+                            style={{ borderRadius: "50px" }}
+                          >
+                            Cancel
+                          </Button>
                           <Button
                             onClick={onClose}
                             style={{
                               backgroundColor: "#7643ea",
                               color: "#fff",
-                              borderRadius:"50px"
+                              borderRadius: "50px",
                             }}
                           >
                             Submit
@@ -207,7 +220,6 @@ const Header = () => {
                         <Row gutter={16}>
                           <Col span={12}>
                             <Form.Item
-                           
                               name="name"
                               label="Name"
                               rules={[
@@ -326,7 +338,7 @@ const Header = () => {
                               rules={[
                                 {
                                   required: true,
-                                  message: "please enter url description",  
+                                  message: "please enter url description",
                                 },
                               ]}
                             >
