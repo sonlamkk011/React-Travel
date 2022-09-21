@@ -3,9 +3,13 @@ import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import { useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
-import { Button } from "antd";
+import { Button, Input } from "antd";
 import { useState } from "react";
 import "./Register.scss";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import { auth } from "../Login/Service/firebaseConfig ";
+import {signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+
 const Register = () => {
 
   const [open, setOpen] = useState(false);
@@ -20,7 +24,26 @@ const Register = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+    .then((re) => {
+      console.log(re);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  } 
+  const signInWithFacebook = () => {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+    .then((re) => {
+      console.log(re);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+  }
   return (
     <>
       <div
@@ -52,14 +75,14 @@ const Register = () => {
                 </Collapse>
                 <div className="left">
                   <h1 style={{color:"#fff"}}>Sign up</h1>
-                  <input type="text" name="username" placeholder="Username" />
-                  <input type="text" name="email" placeholder="E-mail" />
-                  <input
+                  <Input type="text" name="username" placeholder="Username" />
+                  <Input type="text" name="email" placeholder="E-mail" />
+                  <Input
                     type="password"
                     name="password"
                     placeholder="Password"
                   />
-                  <input
+                  <Input
                     type="password"
                     name="password2"
                     placeholder="Retype password"
@@ -69,7 +92,6 @@ const Register = () => {
                     name="signup_submit"
                     defaultValue="Sign me up"
                   /> */}
-
                   <Button
                     onClick={handleRegister}
                     style={{
@@ -82,21 +104,20 @@ const Register = () => {
                     Submit
                   </Button>
                 </div>
-                <div className="right" style={{ marginTop: "65px" }}>
-                  <span className="loginwith">
+                <div className="right" >
+                  <span className="loginwith" >
                     Sign in with
                     <br />
                     social network
                   </span>
-                  <button className="social-signin facebook">
-                    Log in with facebook
-                  </button>
-                  {/* <button className="social-signin twitter">
-                    Log in with Twitter
-                  </button> */}
-                  <button className="social-signin google">
+                  <div style={{marginTop:"65px"}}>
+                  <Button onClick={signInWithFacebook} className="social-signin facebook">
+                     Log in with Facebook 
+                  </Button>
+                  <Button onClick={signInWithGoogle} className="social-signin google">
                     Log in with Google+
-                  </button>
+                  </Button>
+                  </div>
                 </div>
                 <div className="or" style={{ marginTop: "65px" }}>
                   OR

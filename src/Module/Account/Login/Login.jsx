@@ -1,14 +1,17 @@
 // import Login from "../Login/Service/Login.js";
-import { height } from "@mui/system";
-import { Button, Checkbox } from "antd";
-import { Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
-import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
-import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
-import "./Login.scss";
+import IconButton from "@mui/material/IconButton";
+import { Button, Checkbox } from "antd";
+import {
+  FacebookAuthProvider, GoogleAuthProvider, signInWithPopup
+} from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "./Login.scss";
+import { auth } from "./Service/firebaseConfig ";
+
 const Login = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -22,6 +25,28 @@ const Login = () => {
 
   const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
+  };
+
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((re) => {
+        console.log(re);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const signInWithFacebook = () => {
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((re) => {
+        console.log(re);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   return (
     <>
@@ -87,7 +112,6 @@ const Login = () => {
                     >
                       Login
                     </Button>
-
                     <Link to="/register">
                       <Button
                         style={{
@@ -108,15 +132,18 @@ const Login = () => {
                       <br />
                       social network
                     </span>
-                    <button className="social-signin facebook">
-                      Log in with facebook
-                    </button>
-                    {/* <button className="social-signin twitter">
-                      Log in with Twitter
-                    </button> */}
-                    <button className="social-signin google">
+                    <Button
+                      onClick={signInWithFacebook}
+                      className="social-signin facebook"
+                    >
+                      Log in with Facebook
+                    </Button>
+                    <Button
+                      onClick={signInWithGoogle}
+                      className="social-signin google"
+                    >
                       Log in with Google+
-                    </button>
+                    </Button>
                   </div>
                   <div className="or">OR</div>
                 </div>

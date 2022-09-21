@@ -12,6 +12,7 @@ import {
   Select,
   Space,
 } from "antd";
+import { color } from "@mui/system";
 
 const { Option } = Select;
 
@@ -165,7 +166,8 @@ const Header = () => {
                       style={{
                         backgroundColor: "#7643ea",
                         color: "#fff",
-                        height: "50px",
+                        height: "40px",
+                        borderRadius:"999px"
                       }}
                       onClick={showDrawer}
                       icon={<PlusOutlined />}
@@ -173,21 +175,27 @@ const Header = () => {
                       Add Listings
                     </Button>
                     <Drawer
-                      title="Create a new account"
+                      title="Create a new "
                       width={600}
                       onClose={onClose}
                       visible={visible}
                       bodyStyle={{
                         paddingBottom: 80,
+                        backgroundColor:"#7643ea",
                       }}
                       extra={
                         <Space>
-                          <Button onClick={onClose}>Cancel</Button>
+                          <Button 
+                          onClick={onClose}
+                          style={{borderRadius:"50px"}}
+                          
+                          >Cancel</Button>
                           <Button
                             onClick={onClose}
                             style={{
                               backgroundColor: "#7643ea",
                               color: "#fff",
+                              borderRadius:"50px"
                             }}
                           >
                             Submit
@@ -199,6 +207,7 @@ const Header = () => {
                         <Row gutter={16}>
                           <Col span={12}>
                             <Form.Item
+                           
                               name="name"
                               label="Name"
                               rules={[
@@ -317,7 +326,7 @@ const Header = () => {
                               rules={[
                                 {
                                   required: true,
-                                  message: "please enter url description",
+                                  message: "please enter url description",  
                                 },
                               ]}
                             >

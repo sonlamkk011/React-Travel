@@ -1,3 +1,4 @@
+import { Button } from "antd"
 import Footer from "../Shared/Footer/Footer"
 import Header from "../Shared/Header/Header"
 
@@ -156,12 +157,14 @@ const Explore = () => {
                                                 </label>
                                             </div>
                                         </div>
-                                        <button
+                                        <Button
                                             type="submit"
                                             className="btn dorne-btn mt-50 bg-white text-dark"
+                                            style={{height:"50px", borderRadius:"999px"}}
+                                            
                                         >
                                             <i className="fa fa-search pr-2" aria-hidden="true" /> Search
-                                        </button>
+                                        </Button>
                                     </form>
                                 </div>
                                 <div
