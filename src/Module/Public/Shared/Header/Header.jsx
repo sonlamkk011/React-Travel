@@ -1,23 +1,31 @@
-import { useState } from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import List from "@mui/material/List";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
+
 import { PlusOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Col,
-  DatePicker,
-  Drawer,
-  Form,
-  Input,
-  Row,
-  Select,
-  Space,
-} from "antd";
-import { color } from "@mui/system";
+import { Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from "antd";
 
 const { Option } = Select;
 
 const Header = () => {
+  const [search, setSearch] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
 
   const showDrawer = () => {
     setVisible(true);
@@ -27,6 +35,57 @@ const Header = () => {
     setVisible(false);
   };
 
+  
+
+  
+
+ 
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box
+        style={{backgroundColor:"blueviolet", height:"100px"}}
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      role="presentation"
+      // onClick={toggleDrawer(anchor, false)}
+      // onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {" "}
+        <div className="search-btn w-100 d-flex align-items-center">
+        <div className="input-group container flex-nowrap">
+          <input
+          style={{marginTop:"15px"}}
+            type="text"
+            className="form-control input-size rounded-0"
+            placeholder="Search Your Desire Destinations Or Events"
+            aria-label="Username"
+            aria-describedby="addon-wrapping"
+          />
+        </div>
+        </div>
+        {/* <div 
+          className="search-btn w-100 d-flex align-items-center"
+          
+        >
+          <div className="input-group container flex-nowrap">
+          
+          
+          </div>
+        </div> */}
+      </List>
+    </Box>
+  );
   return (
     <>
       <div className="dorne-search-form d-flex align-items-center">
@@ -41,26 +100,25 @@ const Header = () => {
                   type="search"
                   name="caviarSearch"
                   id="search"
-                  placeholder="Search Your Desire Destinations or Events"
+                  placeholder="Search Your Desire Destinations or Events "
                 />
-                <input type="submit" className="d-none" defaultValue="submit" />
+
+                {/* <input type="submit" className="d-none" defaultValue="submit" /> */}
               </form>
             </div>
           </div>
         </div>
       </div>
       <header className="header_area" id="header">
-        <div className="search-btn w-100 d-flex align-items-center">
-        <div className="input-group container flex-nowrap">
-          <input
-            type="text"
-            className="form-control input-size rounded-0"
-            placeholder="Search Your Desire Destinations Or Events"
-            aria-label="Username"
-            aria-describedby="addon-wrapping"
-          />
-        </div>
-        </div>
+        {/* <div 
+          className="search-btn w-100 d-flex align-items-center"
+          
+        >
+          <div className="input-group container flex-nowrap">
+          
+          
+          </div>
+        </div> */}
 
         <div className="container-fluid h-100">
           <div className="row h-100">
@@ -162,10 +220,31 @@ const Header = () => {
                     </li>
                   </ul>
                   {/* Search btn */}
-                  <div className="dorne-search-btn">
-                    <a id="search-btn" href="#">
-                      <i className="fa fa-search" aria-hidden="true"></i> Search
-                    </a>
+
+                    {["top"].map((anchor) => (
+                      <Fragment key={anchor}>
+                        <Button onClick={toggleDrawer(anchor, true)}>
+                          <div className="dorne-search-btn">
+                            <a id="search-btn" href="#">
+                              <i
+                                className="fa fa-search"
+                                aria-hidden="true"
+                              ></i>{" "}
+                              Search
+                            </a>
+                          </div>
+                        </Button>
+                        <SwipeableDrawer
+                          anchor={anchor}
+                          open={state[anchor]}
+                          onClose={toggleDrawer(anchor, false)}
+                          onOpen={toggleDrawer(anchor, true)}
+                        >
+                          {list(anchor)}
+                        </SwipeableDrawer>
+                      </Fragment>
+                    ))}
+                  <div>
                   </div>
 
                   {/* Signin btn */}
@@ -184,7 +263,7 @@ const Header = () => {
                       onClick={showDrawer}
                       icon={<PlusOutlined />}
                     >
-                      Add Listings
+                      Add Listings +
                     </Button>
                     <Drawer
                       title="Create a new "

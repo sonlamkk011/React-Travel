@@ -52,7 +52,7 @@ const Register = () => {
       >
         <div className="wrap-container">
           <div className="row">
-            <div className="col-12" style={{ marginTop: "250px" }}>
+            <div className="col-12 space-top" >
               <div id="login-box" style={{backgroundImage:"url(https://images.pexels.com/photos/13367188/pexels-photo-13367188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)"}}>
                 <Collapse in={open}>
                   <Alert
