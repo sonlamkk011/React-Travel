@@ -471,6 +471,11 @@ li {
     background: rgba(67, 25, 161);
     border: solid 1px #ffffff2e;
 }
+.search-btn .input-size:focus {
+    box-shadow: none;
+    color: #fff;
+    border: none;
+}
 
 .sticky .header_area {
     background-color: rgba(14, 2, 35, 0.9);
