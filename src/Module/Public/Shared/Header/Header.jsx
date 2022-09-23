@@ -1,14 +1,25 @@
+import { PlusOutlined } from "@ant-design/icons";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import {
+  Col,
+  DatePicker,
+  Drawer,
+  Form,
+  Input,
+  message,
+  Row,
+  Select,
+  Space,
+  Upload,
+} from "antd";
+import ImgCrop from "antd-img-crop";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-import { PlusOutlined } from "@ant-design/icons";
-import { Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from "antd";
-
 const { Option } = Select;
-
+const key = "updatable";
 const Header = () => {
   const [visible, setVisible] = useState(false);
   const [state, setState] = useState({
@@ -17,6 +28,14 @@ const Header = () => {
     bottom: false,
     right: false,
   });
+  const [fileList, setFileList] = useState([
+    {
+      uid: "-1",
+      name: "image.png",
+      status: "done",
+      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+    },
+  ]);
 
   const showDrawer = () => {
     setVisible(true);
@@ -59,6 +78,41 @@ const Header = () => {
       </List>
     </Box>
   );
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+
+  const onPreview = async (file) => {
+    let src = file.url;
+
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+
+        reader.onload = () => resolve(reader.result);
+      });
+    }
+
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow?.document.write(image.outerHTML);
+  };
+  const openMessage = () => {
+    setVisible(false);
+    message.loading({
+      content: "Loading...",
+      key,
+    });
+    setTimeout(() => {
+      message.success({
+        content: "Success!",
+        key,
+        duration: 2,
+      });
+    }, 1500);
+  };
   return (
     <>
       <div className="dorne-search-form d-flex align-items-center">
@@ -220,7 +274,6 @@ const Header = () => {
                       visible={visible}
                       bodyStyle={{
                         paddingBottom: 80,
-                        backgroundColor: "#7643ea",
                       }}
                       extra={
                         <Space>
@@ -231,7 +284,7 @@ const Header = () => {
                             Cancel
                           </Button>
                           <Button
-                            onClick={onClose}
+                            onClick={openMessage}
                             style={{
                               backgroundColor: "#7643ea",
                               color: "#fff",
@@ -374,6 +427,17 @@ const Header = () => {
                                 placeholder="please enter url description"
                               />
                             </Form.Item>
+                            <ImgCrop rotate>
+                              <Upload
+                                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                listType="picture-card"
+                                fileList={fileList}
+                                onChange={onChange}
+                                onPreview={onPreview}
+                              >
+                                {fileList.length < 5 && "+ Upload"}
+                              </Upload>
+                            </ImgCrop>
                           </Col>
                         </Row>
                       </Form>
