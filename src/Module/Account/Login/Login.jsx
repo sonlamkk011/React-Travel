@@ -88,6 +88,7 @@ const Login = () => {
                     <h1 style={{ color: "#fff" }}>Sign in</h1>
                     <input type="text" name="username" placeholder="Username" />
                     <input
+                    
                       type="password"
                       name="password"
                       placeholder="Password"

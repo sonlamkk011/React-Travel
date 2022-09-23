@@ -1,25 +1,16 @@
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Button from "@mui/material/Button";
 import List from "@mui/material/List";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
-
 import { PlusOutlined } from "@ant-design/icons";
 import { Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from "antd";
 
 const { Option } = Select;
 
 const Header = () => {
-  const [search, setSearch] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [open, setOpen] = useState(false);
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -35,11 +26,6 @@ const Header = () => {
     setVisible(false);
   };
 
-  
-
-  
-
- 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -54,35 +40,22 @@ const Header = () => {
 
   const list = (anchor) => (
     <Box
-        style={{backgroundColor:"blueviolet", height:"100px"}}
+      style={{ backgroundColor: "blueviolet", height: "100px" }}
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
-      // onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
         {" "}
         <div className="search-btn w-100 d-flex align-items-center">
-        <div className="input-group container flex-nowrap">
-          <input
-          style={{marginTop:"15px"}}
-            type="text"
-            className="form-control input-size rounded-0"
-            placeholder="Search Your Desire Destinations Or Events"
-            aria-label="Username"
-            aria-describedby="addon-wrapping"
-          />
-        </div>
-        </div>
-        {/* <div 
-          className="search-btn w-100 d-flex align-items-center"
-          
-        >
           <div className="input-group container flex-nowrap">
-          
-          
+            <Input.Search
+              style={{ marginTop: "25px", backgroundColor: "#8139c3" }}
+              type="text"
+              placeholder="Search Your Desire Destinations Or Events"
+              enterButton
+            />
           </div>
-        </div> */}
+        </div>
       </List>
     </Box>
   );
@@ -102,24 +75,12 @@ const Header = () => {
                   id="search"
                   placeholder="Search Your Desire Destinations or Events "
                 />
-
-                {/* <input type="submit" className="d-none" defaultValue="submit" /> */}
               </form>
             </div>
           </div>
         </div>
       </div>
       <header className="header_area" id="header">
-        {/* <div 
-          className="search-btn w-100 d-flex align-items-center"
-          
-        >
-          <div className="input-group container flex-nowrap">
-          
-          
-          </div>
-        </div> */}
-
         <div className="container-fluid h-100">
           <div className="row h-100">
             <div className="col-12 h-100">
@@ -180,39 +141,35 @@ const Header = () => {
                         </Link>
                       </div>
                     </li>
-                    {/* <li className="nav-item dropdown">
-                                            <a
-                                                className="nav-link dropdown-toggle"
-                                                href="#"
-                                                id="navbarDropdown2"
-                                                role="button"
-                                                data-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
-                                                Listings <i className="fa fa-angle-down" aria-hidden="true" />
-                                            </a>
-                                            <div
-                                                className="dropdown-menu"
-                                                aria-labelledby="navbarDropdown2"
-                                            >
-                                                <a className="dropdown-item" href="index.html">
-                                                    Home
-                                                </a>
-                                                <a className="dropdown-item" href="explore.html">
-                                                    Explore
-                                                </a>
-                                                <a className="dropdown-item" href="listing.html">
-                                                    Listing
-                                                </a>
-                                                <a className="dropdown-item" href="single-listing.html">
-                                                    Single Listing
-                                                </a>
-                                                <a className="dropdown-item" href="contact.html">
-                                                    Contact
-                                                </a>
-                                            </div>
-                                        </li> */}
+                    <li className="nav-item dropdown">
+                      <a
+                        className="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown2"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Listings{" "}
+                        <i className="fa fa-angle-down" aria-hidden="true" />
+                      </a>
+                      <div
+                        className="dropdown-menu"
+                        aria-labelledby="navbarDropdown2"
+                      >
+                        <Link to="/" className="dropdown-item">
+                          Home
+                        </Link>
+
+                        <Link to="/listing" className="dropdown-item">
+                          Listing
+                        </Link>
+                        <Link to="/single-listing" className="dropdown-item">
+                          Single Listing
+                        </Link>
+                      </div>
+                    </li>
                     <li className="nav-item">
                       <Link to="/contact" className="nav-link">
                         Contact
@@ -221,44 +178,35 @@ const Header = () => {
                   </ul>
                   {/* Search btn */}
 
-                    {["top"].map((anchor) => (
-                      <Fragment key={anchor}>
-                        <Button onClick={toggleDrawer(anchor, true)}>
-                          <div className="dorne-search-btn">
-                            <a id="search-btn" href="#">
-                              <i
-                                className="fa fa-search"
-                                aria-hidden="true"
-                              ></i>{" "}
-                              Search
-                            </a>
-                          </div>
-                        </Button>
-                        <SwipeableDrawer
-                          anchor={anchor}
-                          open={state[anchor]}
-                          onClose={toggleDrawer(anchor, false)}
-                          onOpen={toggleDrawer(anchor, true)}
-                        >
-                          {list(anchor)}
-                        </SwipeableDrawer>
-                      </Fragment>
-                    ))}
-                  <div>
-                  </div>
+                  {["top"].map((anchor) => (
+                    <Fragment key={anchor}>
+                      <Button onClick={toggleDrawer(anchor, true)}>
+                        <div className="dorne-search-btn">
+                          <a id="search-btn" href="#">
+                            <i className="fa fa-search" aria-hidden="true"></i>
+                            Search
+                          </a>
+                        </div>
+                      </Button>
+                      <SwipeableDrawer
+                        anchor={anchor}
+                        open={state[anchor]}
+                        onClose={toggleDrawer(anchor, false)}
+                        onOpen={toggleDrawer(anchor, true)}
+                      >
+                        {list(anchor)}
+                      </SwipeableDrawer>
+                    </Fragment>
+                  ))}
+                  <div></div>
 
-                  {/* Signin btn */}
                   <div className="dorne-signin-btn">
                     <Link to="/login">Sign in or Register</Link>
                   </div>
-                  {/* Add listings btn */}
                   <div className="dorne-add-listings-btn">
                     <Button
                       style={{
-                        backgroundColor: "#7643ea",
                         color: "#fff",
-                        height: "40px",
-                        borderRadius: "999px",
                       }}
                       onClick={showDrawer}
                       icon={<PlusOutlined />}
