@@ -4,8 +4,12 @@ import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import { Button, Checkbox } from "antd";
+import { Space } from "antd";
+
 import {
-  FacebookAuthProvider, GoogleAuthProvider, signInWithPopup
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -13,14 +17,15 @@ import "./Login.scss";
 import { auth } from "./Service/firebaseConfig ";
 
 const Login = () => {
+  const [loadings, setLoadings] = useState([]);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = () => {
     setTimeout(() => {
+      // setOpen(true);
       navigate("/");
-    }, 1500);
-    setOpen(true);
+    }, 2500);
   };
 
   const onChange = (e) => {
@@ -48,6 +53,44 @@ const Login = () => {
         console.log(err.message);
       });
   };
+  const enterLoading = (index) => {
+    handleLogin();
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+    setTimeout(() => {
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 1000);
+    setTimeout(() => {
+      setOpen(true);
+    }, 1500)
+    
+  };
+  const handleRegister = (index) => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+    setTimeout(() => {
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 1000);
+    setTimeout(() => {
+    navigate("/register")
+
+    }, 1500)
+    // navigate("/register")
+  }
   return (
     <>
       <>
@@ -88,7 +131,6 @@ const Login = () => {
                     <h1 style={{ color: "#fff" }}>Sign in</h1>
                     <input type="text" name="username" placeholder="Username" />
                     <input
-                    
                       type="password"
                       name="password"
                       placeholder="Password"
@@ -101,9 +143,12 @@ const Login = () => {
                         Remember me
                       </Checkbox>
                     </div>
+                      <div className="d-flex flex-nowrap">
 
                     <Button
-                      onClick={handleLogin}
+                      // onClick={handleLogin}
+                      onClick={() => enterLoading(0)}
+                      loading={loadings[0]}
                       style={{
                         backgroundColor: "#7643ea",
                         borderRadius: "999px",
@@ -113,8 +158,10 @@ const Login = () => {
                     >
                       Login
                     </Button>
-                    <Link to="/register">
                       <Button
+                      // onClick={handleRegister}
+                      onClick={() => handleRegister(1)}
+                      loading={loadings[1]}
                         style={{
                           backgroundColor: "#7643ea",
                           borderRadius: "999px",
@@ -125,7 +172,7 @@ const Login = () => {
                       >
                         Register
                       </Button>
-                    </Link>
+                      </div>
                   </div>
                   <div className="right">
                     <span className="loginwith">

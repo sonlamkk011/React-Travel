@@ -6,20 +6,38 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Button, Input } from "antd";
 import { useState } from "react";
 import "./Register.scss";
-import FacebookIcon from '@mui/icons-material/Facebook';
+import FacebookIcon from "@mui/icons-material/Facebook";
 import { auth } from "../Login/Service/firebaseConfig ";
-import {signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+} from "firebase/auth";
 
 const Register = () => {
-
   const [open, setOpen] = useState(false);
+  const [loadings, setLoadings] = useState([]);
   const navigate = useNavigate();
 
-  const handleRegister = () => {
+  const handleRegister = (index) => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
     setTimeout(() => {
-      navigate("/login");
-    }, 2000);
-    setOpen(true);
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 1000);
+    setTimeout(() => {
+      setOpen(true);
+    }, 1500)
+    setTimeout(() => {
+      navigate("/login")
+    }, 2000)
   };
   const handleClose = () => {
     setOpen(false);
@@ -27,23 +45,23 @@ const Register = () => {
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-    .then((re) => {
-      console.log(re);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  } 
+      .then((re) => {
+        console.log(re);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const signInWithFacebook = () => {
     const provider = new FacebookAuthProvider();
     signInWithPopup(auth, provider)
-    .then((re) => {
-      console.log(re);
-    })
-    .catch((err) => {
-      console.log(err.message);
-    })
-  }
+      .then((re) => {
+        console.log(re);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   return (
     <>
       <div
@@ -52,8 +70,15 @@ const Register = () => {
       >
         <div className="wrap-container">
           <div className="row">
-            <div className="col-12 space-top" >
-              <div id="login-box" style={{backgroundImage:"url(https://images.pexels.com/photos/13367188/pexels-photo-13367188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)"}}>
+            <div className="col-12 space-top">
+              <div
+                id="login-box"
+                style={{
+                  backgroundImage:
+                    "url(https://images.pexels.com/photos/13367188/pexels-photo-13367188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
+                  marginTop: "270px",
+                }}
+              >
                 <Collapse in={open}>
                   <Alert
                     action={
@@ -74,7 +99,7 @@ const Register = () => {
                   </Alert>
                 </Collapse>
                 <div className="left">
-                  <h1 style={{color:"#fff"}}>Sign up</h1>
+                  <h1 style={{ color: "#fff" }}>Sign up</h1>
                   <Input type="text" name="username" placeholder="Username" />
                   <Input type="text" name="email" placeholder="E-mail" />
                   <Input
@@ -93,7 +118,8 @@ const Register = () => {
                     defaultValue="Sign me up"
                   /> */}
                   <Button
-                    onClick={handleRegister}
+                     onClick={() => handleRegister(0)}
+                     loading={loadings[0]}
                     style={{
                       backgroundColor: "#7643ea",
                       borderRadius: "999px",
@@ -104,19 +130,25 @@ const Register = () => {
                     Submit
                   </Button>
                 </div>
-                <div className="right" >
-                  <span className="loginwith" >
+                <div className="right">
+                  <span className="loginwith">
                     Sign in with
                     <br />
                     social network
                   </span>
-                  <div style={{marginTop:"65px"}}>
-                  <Button onClick={signInWithFacebook} className="social-signin facebook">
-                     Log in with Facebook 
-                  </Button>
-                  <Button onClick={signInWithGoogle} className="social-signin google">
-                    Log in with Google+
-                  </Button>
+                  <div style={{ marginTop: "65px" }}>
+                    <Button
+                      onClick={signInWithFacebook}
+                      className="social-signin facebook"
+                    >
+                      Log in with Facebook
+                    </Button>
+                    <Button
+                      onClick={signInWithGoogle}
+                      className="social-signin google"
+                    >
+                      Log in with Google+
+                    </Button>
                   </div>
                 </div>
                 <div className="or" style={{ marginTop: "65px" }}>
